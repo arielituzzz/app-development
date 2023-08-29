@@ -8,12 +8,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   containerView1: {
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-around",
-    width: "100%",
+    minWidth: "60%",
     textInput: {
       fontSize: 30,
       textAlign: "center",
+      marginBottom: 10,
+      backgroundColor: "whitesmoke",
+      borderRadius: 5,
+    },
+    buttons: {
+      flexDirection: "row",
+      justifyContent: "space-around",
     },
   },
   containerView2: {
@@ -24,6 +31,7 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 10,
     width: "80%",
+    height: "50%",
     text: {
       color: "whitesmoke",
       fontSize: 20,
@@ -31,8 +39,24 @@ const styles = StyleSheet.create({
       borderColor: "#DB405C",
       margin: 10,
       padding: 5,
-      width: "70%",
       textAlign: "center",
+    },
+  },
+  modal: {
+    container: {
+      width: "80%",
+      title: {
+        fontSize: 24,
+        color: "whitesmoke",
+        fontWeight: "bold",
+        textAlign: "center",
+      },
+      message: {
+        backgroundColor: "whitesmoke",
+        justifyContent: "center",
+        textAlign: "center",
+        fontSize: 20,
+      },
     },
   },
 });
