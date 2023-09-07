@@ -1,9 +1,10 @@
 // import { Button, StyleSheet, TextInput, View } from "react-native";
-import Home from "./components/home";
+import { Home, Products } from "./src/screens";
 export default function App() {
   return (
     <>
-      <Home />
+      {/* <Home /> */}
+      <Products category={"smartphones"} />
     </>
   );
 }

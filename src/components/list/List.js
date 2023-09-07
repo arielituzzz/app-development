@@ -1,6 +1,6 @@
 import React from "react";
 import { View, FlatList, TouchableOpacity, Text, Image } from "react-native";
-import listStyles from "./listStyles";
+import listStyles from "./list.style";
 
 const List = ({ itemsList, onHandleModal, itemSelected }) => {
   const renderListItem = ({ item, index }) =>

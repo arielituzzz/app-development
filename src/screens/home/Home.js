@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Title from "../title/Title.js";
-import Message from "../message/Message.js";
-import Input from "../input/Input.js";
-import List from "../list/List.js";
-import Modal from "../modal/Modal.js";
+// import Title from "../../components/title/Title.js";
+// import Message from "../../components/message/Message.js";
+// import Input from "../../components/input/Input.js";
+// import List from "../../components/list/List.js";
+// import Modal from "../../components/modal/Modal.js";
 import { View } from "react-native";
-import styles from "./homeStyle.js";
+import styles from "./home.style.js";
+import { Categories } from "./components";
 
 export default function Home() {
   const [textValue, setTextValue] = useState("");
@@ -55,7 +56,8 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <Title title={"Products List"} />
+      <Categories />
+      {/* <Title title={"Products List"} />
       {visibleMessage ? (
         <Message message={"Empty field!"} />
       ) : (
@@ -79,7 +81,7 @@ export default function Home() {
         setItemSelected={setItemSelected}
         itemsList={itemsList}
         itemSelected={itemSelected}
-      />
+      /> */}
     </View>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Modal } from "react-native";
-import messageStyles from "./messageStyles";
+import messageStyles from "./message.style";
 
 const Message = ({ message }) => {
   return (

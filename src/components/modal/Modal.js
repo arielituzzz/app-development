@@ -1,6 +1,6 @@
 import { Text, View, Modal as NewModal, Button } from "react-native";
 import React from "react";
-import modalStyles from "./modalStyle";
+import modalStyles from "./modal.style";
 
 const Modal = ({
   modalVisible,
