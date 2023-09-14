@@ -29,19 +29,21 @@ const Products = ({ category }) => {
 
   return (
     <View style={productsStyles.container}>
-      <Header title={category} />
       <SearchInput onSearch={setKeyword} />
       <View style={productsStyles.container.listContainer}>
         <FlatList
           data={arrProducts}
           renderItem={({ item }) => (
             <View>
-              <Text>{item.title}</Text>
+              <Text style={productsStyles.container.listContainer.text}>
+                {item.title}
+              </Text>
             </View>
           )}
           keyExtractor={(item) => item.id}
         />
       </View>
+      <Header title={category} />
     </View>
   );
 };

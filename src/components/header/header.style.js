@@ -10,6 +10,7 @@ const headerStyles = StyleSheet.create({
     alignItems: "center",
     text: {
       fontSize: 30,
+      fontFamily: "RobotoBoldItalic",
     },
   },
 });

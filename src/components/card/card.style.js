@@ -3,7 +3,7 @@ import { colors } from "../../constants/colors";
 
 const cardStyles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.yellow,
     shadowColor: "#000",
     shadowOffset: {
       width: 3,

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../../../constants/colors";
 
 const categoryItemStyles = StyleSheet.create({
   container: {
@@ -8,6 +9,10 @@ const categoryItemStyles = StyleSheet.create({
       padding: 10,
       justifyContent: "center",
       alignItems: "center",
+      text: {
+        fontSize: 25,
+        fontFamily: "Roboto",
+      },
     },
   },
 });
