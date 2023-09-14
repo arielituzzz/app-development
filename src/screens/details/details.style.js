@@ -4,11 +4,18 @@ export default detailsStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    marginTop: "8%",
     alignItems: "center",
+    paddingHorizontal: 25,
+    marginTop: 20,
+
     image: {
       height: "50%",
       width: "90%",
+    },
+    stock: {
+      flex: 1,
+      fontSize: 15,
+      fontWeight: "bold",
     },
     title: {
       fontSize: 30,

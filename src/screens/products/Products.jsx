@@ -1,13 +1,15 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Header, SearchInput } from "../../components";
-
+import { SearchInput } from "../../components";
+import { Header } from "../../components";
 import allProducts from "../../data/dataProducts";
 import productsStyles from "./products.style";
 
-const Products = ({ category, setProductSelected }) => {
+const Products = ({ navigation, route }) => {
   const [arrProducts, setArrProducts] = useState([]);
   const [keyword, setKeyword] = useState("");
+
+  const { category } = route.params;
 
   useEffect(() => {
     if (category) {
@@ -29,21 +31,29 @@ const Products = ({ category, setProductSelected }) => {
 
   return (
     <View style={productsStyles.container}>
+      <Header title={category.toUpperCase()} />
       <SearchInput onSearch={setKeyword} />
       <View style={productsStyles.container.listContainer}>
         <FlatList
           data={arrProducts}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => setProductSelected(item)}>
-              <Text style={productsStyles.container.listContainer.text}>
-                {item.title}
-              </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Details", { product: item })}
+            >
+              <View style={{ flexDirection: "row", marginVertical: 10 }}>
+                <Text style={productsStyles.container.listContainer.text}>
+                  {item.title}
+                </Text>
+                <Image
+                  style={productsStyles.container.listContainer.image}
+                  source={{ uri: item.thumbnail }}
+                />
+              </View>
             </TouchableOpacity>
           )}
           keyExtractor={(item) => item.id}
         />
       </View>
-      <Header title={category} />
     </View>
   );
 };

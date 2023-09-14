@@ -4,10 +4,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5fa",
-    marginTop: "8%",
-  },
-  listContainer: {
-    paddingHorizontal: 15,
+    marginTop: 20,
+    listContainer: {
+      paddingHorizontal: 25,
+    },
   },
 });
 
