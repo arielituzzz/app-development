@@ -1,4 +1,11 @@
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  SafeAreaView,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { SearchInput } from "../../components";
 import { Header } from "../../components";
@@ -30,7 +37,7 @@ const Products = ({ navigation, route }) => {
   }, [category, keyword]);
 
   return (
-    <View style={productsStyles.container}>
+    <SafeAreaView style={productsStyles.container}>
       <Header title={category.toUpperCase()} />
       <SearchInput onSearch={setKeyword} />
       <View style={productsStyles.container.listContainer}>
@@ -54,7 +61,7 @@ const Products = ({ navigation, route }) => {
           keyExtractor={(item) => item.id}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
