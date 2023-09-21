@@ -7,7 +7,7 @@ const headerStyles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
 
     text: {
       fontSize: 30,

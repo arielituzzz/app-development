@@ -11,6 +11,7 @@ import { SearchInput } from "../../components";
 import { Header } from "../../components";
 import allProducts from "../../data/dataProducts";
 import productsStyles from "./products.style";
+import { colors } from "../../constants/colors";
 
 const Products = ({ navigation, route }) => {
   const [arrProducts, setArrProducts] = useState([]);
@@ -47,13 +48,24 @@ const Products = ({ navigation, route }) => {
             <TouchableOpacity
               onPress={() => navigation.navigate("Details", { product: item })}
             >
-              <View style={{ flexDirection: "row", marginVertical: 10 }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  marginVertical: 10,
+                  borderWidth: 1,
+                  borderColor: colors.purpleLight,
+                  borderRadius: 5,
+                  padding: 8,
+                  justifyContent: "space-between",
+                }}
+              >
                 <Text style={productsStyles.container.listContainer.text}>
                   {item.title}
                 </Text>
                 <Image
                   style={productsStyles.container.listContainer.image}
                   source={{ uri: item.thumbnail }}
+                  resizeMode="contain"
                 />
               </View>
             </TouchableOpacity>

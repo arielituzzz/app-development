@@ -9,4 +9,6 @@ export const colors = {
   purpleLight: "#5A02F5",
   white: "#FFFFFF",
   grey: "#F5F4FA",
+  green: "#22D46C",
+  red: "#D41102",
 };

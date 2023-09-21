@@ -3,6 +3,7 @@ import { Home, Products, Details } from "../screens";
 import { View, Pressable } from "react-native";
 import { Header } from "../components";
 import AntDesing from "@expo/vector-icons/AntDesign";
+import { colors } from "../constants/colors";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,13 @@ function StackNavigator() {
         header: () => (
           <View style={{ flexDirection: "row", marginTop: 50 }}>
             {route.name !== "Home" ? (
-              <Pressable onPress={() => navigation.goBack()}>
+              <Pressable
+                onPress={() => navigation.goBack()}
+                style={{
+                  backgroundColor: colors.blueLight,
+                  justifyContent: "center",
+                }}
+              >
                 <AntDesing name="back" size={25} color={"black"} />
               </Pressable>
             ) : null}

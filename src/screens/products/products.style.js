@@ -14,13 +14,13 @@ const productsStyles = StyleSheet.create({
       flex: 1,
       marginTop: 15,
       text: {
-        fontSize: 20,
+        fontSize: 15,
         color: colors.quaternary,
-        marginRight: 10,
       },
       image: {
-        height: "100%",
-        width: "20%",
+        // height: "100%",
+        width: "15%",
+        borderRadius: 5,
       },
     },
   },

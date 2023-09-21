@@ -5,11 +5,13 @@ import Feather from "@expo/vector-icons/Feather";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import bottomTabNavigatorStyles from "./bottomTabNavigator.style";
 import { colors } from "../../constants/colors";
-import { View } from "react-native";
+import { Text, View } from "react-native";
+import { useSelector } from "react-redux";
 
 const BottomTab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
+  const counter = useSelector((state) => state.counter.value);
   return (
     <BottomTab.Navigator
       initialRouteName="Shop"
@@ -41,10 +43,15 @@ function BottomTabNavigator() {
           tabBarIcon: ({ focused }) => (
             <View
               style={
-                focused ? bottomTabNavigatorStyles.tabBar.iconContainer : null
+                focused
+                  ? bottomTabNavigatorStyles.tabBar.shopContainerActive
+                  : bottomTabNavigatorStyles.tabBar.shopContainer
               }
             >
               <Feather name="shopping-cart" size={24} color={colors.white} />
+              {counter > 0 ? (
+                <Text style={{ color: colors.white }}>{counter}</Text>
+              ) : null}
             </View>
           ),
         }}

@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f5f5fa",
     marginTop: 20,
+    marginBottom: "10%",
     listContainer: {
       paddingHorizontal: 25,
     },

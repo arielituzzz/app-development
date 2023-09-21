@@ -9,13 +9,19 @@ export default detailsStyles = StyleSheet.create({
     marginTop: 20,
 
     image: {
-      height: "50%",
+      height: "40%",
       width: "90%",
+      marginTop: 10,
     },
     stock: {
-      flex: 1,
       fontSize: 15,
       fontWeight: "bold",
+      marginBottom: 10,
+    },
+    category: {
+      fontSize: 15,
+      // fontWeight: "bold",
+      marginBottom: 10,
     },
     title: {
       fontSize: 30,
@@ -28,7 +34,7 @@ export default detailsStyles = StyleSheet.create({
     },
     price: {
       flex: 1,
-      fontSize: 30,
+      fontSize: 40,
       fontWeight: "bold",
       marginVertical: 15,
     },
