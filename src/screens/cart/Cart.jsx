@@ -1,29 +1,43 @@
 import { FlatList, Pressable, View, Text } from "react-native";
 import React from "react";
 import cartStyles from "./cart.style";
-import dataCart from "../../data/dataCart";
 import CartItem from "./components/cartItem/CartItem";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
-  const renderItem = () => <CartItem />;
+  const cart = useSelector((state) => state.cart);
 
   return (
     <View style={cartStyles.container}>
-      <View>
-        <FlatList
-          data={dataCart}
-          keyExtractor={(item) => item.id}
-          renderItem={renderItem}
-        />
-      </View>
-      <View>
-        <Pressable>
-          <Text>Confirm</Text>
+      {cart.items.length <= 0 ? (
+        <View style={cartStyles.container.emptyCartContainer}>
+          <Text style={cartStyles.container.emptyCartContainer.text}>
+            Empty Cart!
+          </Text>
+        </View>
+      ) : (
+        <View style={cartStyles.container.items}>
           <View>
-            <Text>{`Total $100`}</Text>
+            <FlatList
+              data={cart.items}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => <CartItem item={item} />}
+            />
           </View>
-        </Pressable>
-      </View>
+          <View style={cartStyles.container.items.totalAmount}>
+            <Pressable>
+              <Text style={cartStyles.container.items.totalAmount.text}>
+                Total Amount
+              </Text>
+              <View>
+                <Text
+                  style={cartStyles.container.items.totalAmount.price}
+                >{`$${cart.totalAmount}`}</Text>
+              </View>
+            </Pressable>
+          </View>
+        </View>
+      )}
     </View>
   );
 };

@@ -7,15 +7,20 @@ const cartItemStyles = StyleSheet.create({
     padding: 8,
     borderBottomWidth: 1,
     borderBottomColor: colors.tertiary,
-    name: {
-      fontSize: 18,
-    },
-    details: {
-      flex: 1,
-      flexDirection: "row",
-      flexWrap: "wrap",
-      alignItems: "center",
-      justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    product: {
+      name: {
+        fontSize: 18,
+      },
+      details: {
+        flex: 1,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        alignItems: "center",
+        justifyContent: "space-between",
+      },
     },
   },
 });

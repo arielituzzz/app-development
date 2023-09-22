@@ -1,19 +1,25 @@
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 import React, { useState } from "react";
 import counterStyles from "./counter.style";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-} from "../../features/counter/counterSlice";
+import { useDispatch } from "react-redux";
 
-const Counter = () => {
+import { addToCart } from "../../features/cart/cartSlice";
+
+const Counter = ({ product }) => {
   const [inputToAdd, setInputToAdd] = useState(0);
 
-  const counter = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
+
+  const { id, title } = product;
+
+  const price = product.price * inputToAdd;
+
+  const handleAddToCart = () => {
+    const quantity = inputToAdd;
+    const item = { id, title, quantity, price };
+    dispatch(addToCart(item));
+  };
 
   return (
     <View style={counterStyles.container}>
@@ -26,21 +32,16 @@ const Counter = () => {
             : counterStyles.counterContainer
         }
       >
-        {/* <Pressable
-          style={counterStyles.counterButtons}
-          onPress={() => dispatch(decrement())}
-        > */}
         <Pressable
           style={counterStyles.counterButtons}
-          onPress={() => setInputToAdd(inputToAdd - 1)}
+          onPress={() =>
+            inputToAdd > 0 ? setInputToAdd(inputToAdd - 1) : null
+          }
         >
           <Text style={counterStyles.signs}>-</Text>
         </Pressable>
         <Text style={counterStyles.signs}>{inputToAdd}</Text>
-        {/* <Pressable
-          style={counterStyles.counterButtons}
-          onPress={() => dispatch(increment())}
-        > */}
+
         <Pressable
           style={counterStyles.counterButtons}
           onPress={() => setInputToAdd(inputToAdd + 1)}
@@ -49,15 +50,8 @@ const Counter = () => {
         </Pressable>
       </View>
       <View style={counterStyles.inputContainer}>
-        {/* <TextInput
-          keyboardType="number-pad"
-          style={counterStyles.input}
-          placeholder="cantidad a sumar"
-          value={Number(inputToAdd)}
-          onChangeText={(value) => setInputToAdd(Number(value))}
-        /> */}
         <Pressable
-          onPress={() => dispatch(incrementByAmount(inputToAdd))}
+          onPress={() => handleAddToCart()}
           disabled={inputToAdd === 0 ? true : false}
         >
           <Text

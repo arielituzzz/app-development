@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 const BottomTab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
-  const counter = useSelector((state) => state.counter.value);
+  const counter = useSelector((state) => state.cart.items.length);
   return (
     <BottomTab.Navigator
       initialRouteName="Shop"
