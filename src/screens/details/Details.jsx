@@ -1,9 +1,11 @@
 import { Image, Text, View } from "react-native";
 import detailsStyles from "./details.style";
 import { Header } from "../../components";
-import Counter from "../../components/counter/Counter";
+import { Counter, OptionsRegister } from "../../components";
+import { useSelector } from "react-redux";
 
 const Details = ({ route }) => {
+  const { user } = useSelector((state) => state.user);
   const { product } = route.params;
   return (
     <View style={detailsStyles.container}>
@@ -22,7 +24,7 @@ const Details = ({ route }) => {
         {product.description}
       </Text>
       <Text style={detailsStyles.container.price}>{`$ ${product.price}`}</Text>
-      <Counter product={product} />
+      {user ? <Counter product={product} /> : <OptionsRegister />}
     </View>
   );
 };

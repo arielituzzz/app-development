@@ -1,12 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import counterSlice from "../features/counter/counterSlice";
-// import shopSlice from "../features/shop/shopSlice";
+import shopSlice from "../features/shop/shopSlice";
 import cartSlice from "../features/cart/cartSlice";
+import userSlice from "../features/user/userSlice";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { shopApi } from "../services/shopApi";
 
-export default configureStore({
+const store = configureStore({
   reducer: {
-    // counter: counterSlice,
-    // shop: shopSlice,
+    shop: shopSlice,
     cart: cartSlice,
+    user: userSlice,
+    [shopApi.reducerPath]: shopApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(shopApi.middleware),
 });
+
+setupListeners(store.dispatch);
+
+export default store;
