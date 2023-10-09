@@ -1,15 +1,13 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
 
-export default loginStyle = StyleSheet.create({
+export default styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primary,
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
   },
   loginContainer: {
-    backgroundColor: colors.red,
     width: "100%",
     paddingHorizontal: 20,
     justifyContent: "center",
@@ -20,8 +18,10 @@ export default loginStyle = StyleSheet.create({
     backgroundColor: colors.secondary,
     height: 30,
     marginVertical: 15,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  loginButtom: {
+  loginButton: {
     backgroundColor: colors.primary,
     width: "50%",
     height: 50,

@@ -4,5 +4,14 @@ import SearchInput from "./searchInput/SearchInput";
 import UserAvatar from "./userAvatar/UserAvatar";
 import Counter from "./counter/Counter";
 import OptionsRegister from "./optionsRegister/OptionsRegister";
+import MapPreview from "./mapPreview/MapPreview";
 
-export { Header, Card, SearchInput, UserAvatar, Counter, OptionsRegister };
+export {
+  Header,
+  Card,
+  SearchInput,
+  UserAvatar,
+  Counter,
+  OptionsRegister,
+  MapPreview,
+};

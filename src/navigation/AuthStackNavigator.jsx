@@ -10,7 +10,7 @@ const AuthStack = createNativeStackNavigator();
 function AuthStackNavigator() {
   return (
     <AuthStack.Navigator
-      initialRouteName="SignUp"
+      initialRouteName="Login"
       // screenOptions={({ route, navigation }) => ({
       //   headerShown: true,
       //   header: () => (

@@ -22,6 +22,22 @@ export const shopApi = createApi({
         body: order,
       }),
     }),
+    getDataUser: builder.query({
+      query: (localId) => `users/${localId}.json`,
+    }),
+    postDataUser: builder.mutation({
+      query: ({ name, lastName, gender, email, image, localId }) => ({
+        url: `users/${localId}.json`,
+        method: "PUT",
+        body: {
+          name: name,
+          lastName: lastName,
+          gender: gender,
+          email: email,
+          image: image,
+        },
+      }),
+    }),
   }),
 });
 
@@ -30,4 +46,6 @@ export const {
   useGetProductsQuery,
   useGetProductsByCategoryQuery,
   usePostOrderMutation,
+  useGetDataUserQuery,
+  usePostDataUserMutation,
 } = shopApi;

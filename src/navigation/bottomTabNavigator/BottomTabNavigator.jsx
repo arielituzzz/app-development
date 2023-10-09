@@ -1,7 +1,7 @@
 import CartNavigator from "../CartNavigator";
 import OrdersNavigator from "../OrdersNavigator";
 import StackNavigator from "../StackNavigator";
-import UserNavigation from "../UserNavigation";
+import { UserProfile } from "../../screens";
 import Feather from "@expo/vector-icons/Feather";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { UserAvatar } from "../../components";
@@ -14,7 +14,7 @@ const BottomTab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
   const counter = useSelector((state) => state.cart.items.length);
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.auth);
   return (
     <BottomTab.Navigator
       initialRouteName="Shop"
@@ -77,8 +77,8 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="UserNavigation"
-        component={UserNavigation}
+        name="ProfileNav"
+        component={UserProfile}
         options={{
           tabBarIcon: ({ focused }) => (
             <View

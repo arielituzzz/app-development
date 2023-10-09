@@ -1,7 +1,7 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import optionsRegisterStyles from "./optionsRegister.style";
 
-const OptionsRegister = () => {
+const OptionsRegister = ({ navigation }) => {
   return (
     <View style={optionsRegisterStyles.container}>
       <Text>
@@ -9,8 +9,10 @@ const OptionsRegister = () => {
         <Text style={optionsRegisterStyles.container.login}>Please LOGIN</Text>
       </Text>
       <Text>
-        If not, please{" "}
-        <Text style={optionsRegisterStyles.container.signUp}>SIGN UP</Text>
+        If not, please
+        <Pressable onPress={() => navigation.navigate("SignUp")}>
+          <Text style={optionsRegisterStyles.container.signUp}>SIGN UP</Text>
+        </Pressable>
       </Text>
     </View>
   );

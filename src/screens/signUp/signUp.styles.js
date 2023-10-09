@@ -4,22 +4,25 @@ import { colors } from "../../constants/colors";
 export default loginStyle = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.white,
     alignItems: "center",
     justifyContent: "center",
   },
   loginContainer: {
-    backgroundColor: colors.red,
-    width: "100%",
-    paddingHorizontal: 20,
+    backgroundColor: colors.blueLight,
+    width: "80%",
+    padding: 20,
     justifyContent: "center",
-    alignItems: "center",
+    borderWidth: 1,
+    borderRadius: 5,
   },
-  inputEmail: {
+  inputs: {
     width: "95%",
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.grey,
     height: 30,
-    marginVertical: 15,
+    marginVertical: 5,
+    borderRadius: 5,
+    paddingHorizontal: 5,
   },
   loginButtom: {
     backgroundColor: colors.primary,

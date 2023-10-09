@@ -5,7 +5,7 @@ import { Counter, OptionsRegister } from "../../components";
 import { useSelector } from "react-redux";
 
 const Details = ({ route }) => {
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.auth);
   const { product } = route.params;
   return (
     <View style={detailsStyles.container}>

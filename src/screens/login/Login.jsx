@@ -1,20 +1,50 @@
-import { View, Text, TextInput, Pressable } from "react-native";
-import React from "react";
-import loginStyles from "./login.styles";
+import { Pressable, Text, TextInput, View } from "react-native";
+import React, { useState } from "react";
 
-const Login = () => {
+import { setUser } from "../../features/auth/authSlice";
+import styles from "./login.styles";
+import { useDispatch } from "react-redux";
+import { useLoginMutation } from "../../services/authApi";
+
+const Login = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [triggerLogin, result] = useLoginMutation();
+  const dispatch = useDispatch();
+
+  const onSubmit = () => {
+    triggerLogin({
+      email,
+      password,
+    });
+    if (result.isSuccess) {
+      dispatch(setUser(result));
+    }
+  };
+
   return (
-    <View style={loginStyles.container}>
-      <View style={loginStyles.loginContainer}>
-        <Text>Login to Start</Text>
-        <TextInput style={loginStyles.inputEmail} />
-        <TextInput style={loginStyles.inputEmail} />
-        <Pressable style={loginStyles.loginButtom}>
+    <View style={styles.container}>
+      <View style={styles.loginContainer}>
+        <Text>Login to start</Text>
+        <TextInput
+          style={styles.inputEmail}
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput
+          style={styles.inputEmail}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <Pressable style={styles.loginButton} onPress={onSubmit}>
           <Text style={{ color: "white" }}>Login</Text>
         </Pressable>
         <Text>No have an account?</Text>
-        <Pressable style={loginStyles.loginButtom}>
-          <Text style={{ color: "white" }}>Sign Up</Text>
+        <Pressable
+          style={styles.loginButton}
+          onPress={() => navigation.navigate("SignUp")}
+        >
+          <Text style={{ color: "white" }}>Sign up</Text>
         </Pressable>
       </View>
     </View>
