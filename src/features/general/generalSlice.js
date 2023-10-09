@@ -14,12 +14,6 @@ export const generalSlice = createSlice({
         state.location.longitude = action.payload.longitude;
       }
     },
-    clearUser: () => {
-      return { user: null, token: null };
-    },
-    setCameraImage: (state, action) => {
-      return { ...state, imageCamera: action.payload };
-    },
   },
 });
 

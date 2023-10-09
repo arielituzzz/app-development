@@ -5,7 +5,9 @@ import * as ImagePicker from "expo-image-picker";
 
 import { useSelector, useDispatch } from "react-redux";
 import { clearUser, setCameraImage } from "../../features/auth/authSlice";
-import { usePostDataUserMutation } from "../../services/shopApi";
+import { usePostImageUserMutation } from "../../services/shopApi";
+import * as Location from "expo-location";
+import { setLocation } from "../../features/general/generalSlice";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { MapPreview, OptionsRegister } from "../../components";
@@ -15,13 +17,13 @@ import styles from "./profile.styles";
 
 const UserProfile = () => {
   const [showBottom, setShowBottom] = useState(false);
-  const { user, localId, name, lastName, gender, email } = useSelector(
+  const { user, localId, name, lastName, gender, email, update } = useSelector(
     (state) => state.auth
   );
   const { location } = useSelector((state) => state.general);
   const image = useSelector((state) => state.auth.imageCamera);
   const dispatch = useDispatch();
-  const [triggerSaveDataUser, result] = usePostDataUserMutation();
+  const [triggerSaveImageUser, result] = usePostImageUserMutation();
 
   const verifyCameraPermissions = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
@@ -52,13 +54,36 @@ const UserProfile = () => {
   };
 
   const confirmImage = () => {
-    triggerSaveDataUser({ name, lastName, gender, email, image, localId });
-    console.log(name, lastName, gender, email, localId);
+    const update = new Date().toLocaleDateString("en-US");
+    triggerSaveImageUser({
+      name,
+      lastName,
+      gender,
+      email,
+      image,
+      localId,
+      update,
+    });
+    console.log(localId, update);
     setShowBottom(false);
   };
 
   const logOut = () => {
     dispatch(clearUser());
+  };
+
+  const locationRequest = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      console.log("permission denied");
+      return;
+    }
+    let location = await Location.getCurrentPositionAsync({});
+    const userLocation = {
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+    };
+    dispatch(setLocation(userLocation));
   };
 
   return (
@@ -94,13 +119,20 @@ const UserProfile = () => {
           />
         </View>
       ) : (
-        <Image
-          source={{
-            uri: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          }}
-          style={styles.image}
-          resizeMode="cover"
-        />
+        <View style={{ overflow: "hidden", borderRadius: 100 }}>
+          <Image
+            source={{
+              uri:
+                gender === "Male"
+                  ? "https://img.freepik.com/premium-vector/default-male-user-profile-icon-vector-illustration_276184-168.jpg"
+                  : gender === "Female"
+                  ? "https://img.freepik.com/premium-vector/default-female-user-profile-icon-vector-illustration_276184-169.jpg"
+                  : "https://e7.pngegg.com/pngimages/753/432/png-clipart-user-profile-2018-in-sight-user-conference-expo-business-default-business-angle-service.png",
+            }}
+            style={styles.image}
+            resizeMode="cover"
+          />
+        </View>
       )}
       <Pressable style={styles.cameraButton} onPress={pickImage}>
         <MaterialCommunityIcons name="camera" size={40} color="black" />
@@ -111,34 +143,26 @@ const UserProfile = () => {
           <Text>Complete Registration!</Text>
         </Pressable>
       )}
-      {/* <Pressable
-        style={{ ...styles.cameraButton, marginTop: 20 }}
-        onPress={() => navigation.navigate("Location")}
-      >
-      <Text>Ir a mi ubiacion</Text>
-      </Pressable> */}
+      {!location.latitude || !location.longitude ? (
+        <View style={{ marginTop: 20 }}>
+          <Pressable onPress={locationRequest}>
+            <Text style={{ fontSize: 15, color: "blue", fontWeight: "bold" }}>
+              Click here to get your LOCATION
+            </Text>
+          </Pressable>
+        </View>
+      ) : (
+        <View style={{ marginTop: 20 }}>
+          <Text style={{ textAlign: "center", fontSize: 20 }}>
+            Your location
+          </Text>
+          <MapPreview location={location} />
+        </View>
+      )}
       <View style={{ marginTop: 20 }}>
-        <Text style={{ textAlign: "center", fontSize: 20 }}>Your location</Text>
-        <MapPreview location={location} />
+        <Text>Last Update: {update}</Text>
       </View>
     </View>
-    // <View style={userProfileStyles.container}>
-    //   {user ? (
-    //     <View style={userProfileStyles.container.registered}>
-    //       <Text style={userProfileStyles.container.registered.text}>
-    //         USER REGISTERED
-    //       </Text>
-    //     </View>
-    //   ) : (
-    //     <View style={userProfileStyles.container.noRegistered}>
-    //       <Entypo name="emoji-sad" size={50} color="black" />
-    //       <Text style={userProfileStyles.container.noRegistered.text}>
-    //         NO REGISTERED
-    //       </Text>
-    //       <OptionsRegister />
-    //     </View>
-    //   )}
-    // </View>
   );
 };
 

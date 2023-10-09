@@ -32,7 +32,7 @@ const MainNavigator = () => {
   useEffect(() => {
     if (data) {
       console.log("trayendo data");
-      console.log(localId, data.image);
+      console.log(data.image && "imagen traida correctamente");
 
       const user = {
         name: data.name,
@@ -40,11 +40,12 @@ const MainNavigator = () => {
         gender: data.gender,
         email: data.email,
         image: data.image,
+        update: data.update,
       };
       dispatch(setCameraImage(user.image));
       dispatch(setDataUser(user));
     }
-  }, [data]);
+  }, [data, localId]);
 
   return user ? <BottomTabNavigator /> : <AuthStackNavigator />;
 };

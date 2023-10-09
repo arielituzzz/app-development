@@ -26,7 +26,20 @@ export const shopApi = createApi({
       query: (localId) => `users/${localId}.json`,
     }),
     postDataUser: builder.mutation({
-      query: ({ name, lastName, gender, email, image, localId }) => ({
+      query: ({ name, lastName, gender, email, localId, update }) => ({
+        url: `users/${localId}.json`,
+        method: "PUT",
+        body: {
+          name: name,
+          lastName: lastName,
+          gender: gender,
+          email: email,
+          update: update,
+        },
+      }),
+    }),
+    postImageUser: builder.mutation({
+      query: ({ name, lastName, gender, email, image, localId, update }) => ({
         url: `users/${localId}.json`,
         method: "PUT",
         body: {
@@ -35,6 +48,7 @@ export const shopApi = createApi({
           gender: gender,
           email: email,
           image: image,
+          update: update,
         },
       }),
     }),
@@ -48,4 +62,5 @@ export const {
   usePostOrderMutation,
   useGetDataUserQuery,
   usePostDataUserMutation,
+  usePostImageUserMutation,
 } = shopApi;

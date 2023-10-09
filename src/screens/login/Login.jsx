@@ -18,7 +18,7 @@ const Login = ({ navigation }) => {
       password,
     });
     if (result.isSuccess) {
-      dispatch(setUser(result));
+      dispatch(setUser(result.data));
     }
   };
 

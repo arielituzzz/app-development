@@ -9,6 +9,7 @@ const initialState = {
   lastName: null,
   email: null,
   gender: null,
+  update: null,
 };
 
 export const authSlice = createSlice({
@@ -18,8 +19,8 @@ export const authSlice = createSlice({
     setUser: (state, action) => {
       return {
         user: true,
-        token: action.payload.data.idToken,
-        localId: action.payload.data.localId,
+        token: action.payload.idToken,
+        localId: action.payload.localId,
       };
     },
     setDataUser: (state, action) => {
@@ -29,8 +30,10 @@ export const authSlice = createSlice({
         lastName: action.payload.lastName,
         gender: action.payload.gender,
         email: action.payload.email,
+        update: action.payload.update,
       };
     },
+
     clearUser: () => {
       return {
         user: null,
@@ -41,6 +44,7 @@ export const authSlice = createSlice({
         lastName: null,
         email: null,
         gender: null,
+        update: null,
       };
     },
     setCameraImage: (state, action) => {

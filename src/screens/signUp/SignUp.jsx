@@ -5,6 +5,7 @@ import { setUser } from "../../features/auth/authSlice";
 import { setDataUser } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useSignUpMutation } from "../../services/authApi";
+import { usePostDataUserMutation } from "../../services/shopApi";
 import { SelectList } from "react-native-dropdown-select-list";
 
 const Signup = ({ navigation }) => {
@@ -15,20 +16,44 @@ const Signup = ({ navigation }) => {
   const [password, setPassword] = useState(null);
   const [confirmPass, setConfirmPass] = useState(null);
   const [triggerSignup, result] = useSignUpMutation();
+  const [triggerSaveDataUser, results] = usePostDataUserMutation();
 
   const dispatch = useDispatch();
 
   const onSubmit = () => {
+    const update = new Date().toLocaleDateString("en-US");
     const newUser = {
       name: name,
       lastName: lastName,
       gender: gender,
       email: email,
+      update: update,
     };
-    triggerSignup({ email, password });
-    if (result.isSuccess) {
-      dispatch(setUser(result));
+    if (password === confirmPass) {
+      triggerSignup({ email, password });
+    } else {
+      alert("Passwords do not match");
+      return;
+    }
+    if (result.isSuccess && name && lastName && gender && email) {
+      dispatch(setUser(result.data));
       dispatch(setDataUser(newUser));
+      const update = new Date().toLocaleDateString("en-US");
+      const localId = result.data.localId;
+      triggerSaveDataUser({
+        name,
+        lastName,
+        gender,
+        email,
+        localId,
+        update,
+      });
+    } else if (result.isUninitialized) {
+      alert(`Error:Registered user or incorrectly entered data`);
+      return;
+    } else {
+      alert("Please fill all the fields");
+      return;
     }
   };
 
